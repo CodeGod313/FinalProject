@@ -1,0 +1,65 @@
+create table roles(
+	role_id bigserial primary key not null,
+	role_name varchar(3) not null
+);
+
+create table users(
+	user_id bigserial primary key not null,
+	role_id bigint,
+	first_name varchar(15) not null,
+	last_name varchar(15) not null,
+	email varchar(25) not null,
+	user_password varchar(16) not null,
+	foreign key(role_id) references roles(role_id)
+);
+
+create table clients(
+	client_id bigserial primary key not null,
+	user_id bigint,
+	passport_series varchar(2) not null,
+	passport_number varchar(7) not null,
+	foreign key(user_id) references users(user_id)
+);
+
+
+create table companies(
+	company_id bigserial primary key not null,
+	company_name varchar(20),
+	company_short_name varchar(5),
+	company_description text,
+	share_price decimal not null,
+	share_quantity int not null 
+);
+
+create table shares(
+	owner_id bigint not null,
+	company_id bigint not null,
+	date_of_purchase date not null, 
+	foreign key(owner_id) references clients(client_id),
+	foreign key(company_id) references companies(company_id)
+);
+
+create table accounts(
+	account_id bigserial primary key not null,
+	user_id bigint not null,
+	account_value decimal not null,
+	foreign key(user_id) references users(user_id)
+);
+
+create table coin_type(
+	coin_type_id bigserial primary key not null,
+	coin_name varchar(20) not null,
+	short_name varchar(5) not null,
+	description text,
+	coin_function varchar(10) not null,
+	price decimal not null
+);
+
+create table coins_accounts(
+	coins_account_id bigserial primary key not null,
+	coin_type bigint not null,
+	owner_id bigint not null,
+	coins_count decimal not null,
+	foreign key(owner_id) references clients(client_id),
+	foreign key(coin_type) references coin_types(coin_type_id)
+);
