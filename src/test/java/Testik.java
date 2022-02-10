@@ -1,9 +1,19 @@
-import java.util.ResourceBundle;
+import by.epam.finalproject.model.entity.Client;
+import by.epam.finalproject.model.exception.DaoException;
+import by.epam.finalproject.model.exception.WrongParameterException;
+import by.epam.finalproject.model.service.RegistrationService;
+import by.epam.finalproject.model.service.impl.RegistrationServiceImpl;
 
 public class Testik {
     public static void main(String[] args) {
-        ResourceBundle resourceBundle = ResourceBundle.getBundle("database");
-        String url = resourceBundle.getString("db.url");
-        System.out.println(url);
+        RegistrationService registrationService = new RegistrationServiceImpl();
+        Client client = new Client("Popa", "Kaka", "lol@lol.lol", "alexa098", "MC", "3333333");
+        try {
+            registrationService.registerClient(client);
+        } catch (DaoException e) {
+            e.printStackTrace();
+        } catch (WrongParameterException e) {
+            e.printStackTrace();
+        }
     }
 }

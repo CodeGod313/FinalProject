@@ -1,6 +1,6 @@
 create table roles(
 	role_id bigserial primary key not null,
-	role_name varchar(3) not null
+	role_name varchar(10) not null
 );
 
 create table users(
@@ -32,9 +32,10 @@ create table companies(
 );
 
 create table shares(
+	share_id bigserial primary key not null,
 	owner_id bigint not null,
 	company_id bigint not null,
-	date_of_purchase date not null, 
+	shares_number int not null, 
 	foreign key(owner_id) references clients(client_id),
 	foreign key(company_id) references companies(company_id)
 );
