@@ -1,7 +1,7 @@
 package by.epam.finalproject.model.dbconnection.impl;
 
-import by.epam.finalproject.model.exception.WrongParameterException;
 import by.epam.finalproject.model.dbconnection.ConnectionPool;
+import by.epam.finalproject.model.exception.WrongParameterException;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 
@@ -38,8 +38,8 @@ public class ConnectionPoolImpl implements ConnectionPool {
                 pool.push(proxyConnection);
             }
         } catch (SQLException e) {
-            // TODO: 03.02.2022 add some rethrow or leave like this
-            logger.error("Database connection error");
+            logger.error("Database connection error", e);
+            throw new RuntimeException("Database connection error", e);
         }
 
     }
@@ -59,7 +59,6 @@ public class ConnectionPoolImpl implements ConnectionPool {
         return instance;
     }
 
-    // TODO: 03.02.2022 think about cool realization of taking connection
     @Override
     public Connection getConnection() {
         return pool.pop();

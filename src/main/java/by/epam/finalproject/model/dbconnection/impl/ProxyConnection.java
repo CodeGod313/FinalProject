@@ -1,7 +1,7 @@
 package by.epam.finalproject.model.dbconnection.impl;
 
-import by.epam.finalproject.model.exception.WrongParameterException;
 import by.epam.finalproject.model.dbconnection.ConnectionPool;
+import by.epam.finalproject.model.exception.WrongParameterException;
 
 import java.sql.*;
 import java.util.Map;
@@ -22,7 +22,7 @@ public class ProxyConnection implements Connection {
         return connection.isWrapperFor(iface);
     }
 
-    public ProxyConnection(Connection connection){
+    public ProxyConnection(Connection connection) {
         this.connection = connection;
     }
 
@@ -66,7 +66,7 @@ public class ProxyConnection implements Connection {
         connection.rollback();
     }
 
-    void realClose(){
+    void realClose() {
         try {
             connection.close();
         } catch (SQLException e) {
@@ -80,7 +80,7 @@ public class ProxyConnection implements Connection {
         try {
             connectionPool.releaseConnection(connection);
         } catch (WrongParameterException e) {
-            // TODO: 03.02.2022 ignore
+            e.printStackTrace();
         }
     }
 

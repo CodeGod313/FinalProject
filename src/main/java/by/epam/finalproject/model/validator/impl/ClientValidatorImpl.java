@@ -25,4 +25,9 @@ public class ClientValidatorImpl implements ClientValidator {
                 && client.getPassport_series().matches(PASSPORT_SERIES_REGEX)
                 && client.getPassport_number().matches(PASSPORT_NUMBER_REGEX);
     }
+
+    @Override
+    public boolean validatePassword(String password) {
+        return password != null && password.matches(PASSWORD_REGEX);
+    }
 }

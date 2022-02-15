@@ -1,19 +1,18 @@
-import by.epam.finalproject.model.entity.Client;
 import by.epam.finalproject.model.exception.DaoException;
-import by.epam.finalproject.model.exception.WrongParameterException;
-import by.epam.finalproject.model.service.RegistrationService;
-import by.epam.finalproject.model.service.impl.RegistrationServiceImpl;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
 
 public class Testik {
-    public static void main(String[] args) {
-        RegistrationService registrationService = new RegistrationServiceImpl();
-        Client client = new Client("Popa", "Kaka", "lol@lol.lol", "alexa098", "MC", "3333333");
-        try {
-            registrationService.registerClient(client);
-        } catch (DaoException e) {
-            e.printStackTrace();
-        } catch (WrongParameterException e) {
-            e.printStackTrace();
+    public static void main(String[] args) throws DaoException {
+        Scanner scanner = new Scanner(System.in);
+        List<String> sraki = new ArrayList<>();
+        Integer numberOfSrakas = scanner.nextInt();
+        scanner.nextLine();
+        for (int i = 0; i < numberOfSrakas; i++) {
+            sraki.add(scanner.nextLine());
         }
+        sraki.forEach(x -> System.out.println("Hello, " + x));
     }
 }

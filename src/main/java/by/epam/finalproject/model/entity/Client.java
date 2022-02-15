@@ -10,6 +10,9 @@ public class Client extends User {
     private List<Share> shares;
     private List<CoinAccount> coinAccounts;
 
+    public Client() {
+    }
+
     public Client(Long id, String firstName, String lastName, String email, String password, String role, String passport_series, String passport_number, Account account, List<Share> shares, List<CoinAccount> coinAccounts) {
         super(id, firstName, lastName, email, password, role);
         this.passport_series = passport_series;

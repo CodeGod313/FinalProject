@@ -42,9 +42,9 @@ create table shares(
 
 create table accounts(
 	account_id bigserial primary key not null,
-	user_id bigint not null,
+	client_id bigint not null,
 	account_value decimal not null,
-	foreign key(user_id) references users(user_id)
+	foreign key(client_id) references clients(client_id)
 );
 
 create table coin_type(

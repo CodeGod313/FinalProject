@@ -88,12 +88,12 @@ public class UserDaoImpl implements Dao<User> {
     }
 
     @Override
-    public void delete(User entity) throws DaoException {
+    public void delete(Long id) throws DaoException {
         if (connection == null) {
             throw new DaoException("Connection is null");
         }
         try (PreparedStatement statement = connection.prepareStatement(USER_DELETE_COMMAND)) {
-            statement.setLong(1, entity.getId());
+            statement.setLong(1, id);
             statement.executeUpdate();
         } catch (SQLException e) {
             logger.error("Can not delete user", e);

@@ -2,29 +2,24 @@ package by.epam.finalproject.model.entity;
 
 import java.math.BigDecimal;
 
-public class CoinType {
-    private Long id;
+public class CoinType extends CleverEntity {
+
     private String name;
     private String shortName;
     private String description;
-    private String coin_function;
+    private String coinFunction;
     private BigDecimal price;
 
-    public CoinType(Long id, String name, String shortName, String description, String coin_function, BigDecimal price) {
-        this.id = id;
+    public CoinType() {
+    }
+
+    public CoinType(Long id, String name, String shortName, String description, String coinFunction, BigDecimal price) {
+        super(id);
         this.name = name;
         this.shortName = shortName;
         this.description = description;
-        this.coin_function = coin_function;
+        this.coinFunction = coinFunction;
         this.price = price;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
     }
 
     public String getName() {
@@ -51,12 +46,12 @@ public class CoinType {
         this.description = description;
     }
 
-    public String getCoin_function() {
-        return coin_function;
+    public String getCoinFunction() {
+        return coinFunction;
     }
 
-    public void setCoin_function(String coin_function) {
-        this.coin_function = coin_function;
+    public void setCoinFunction(String coinFunction) {
+        this.coinFunction = coinFunction;
     }
 
     public BigDecimal getPrice() {

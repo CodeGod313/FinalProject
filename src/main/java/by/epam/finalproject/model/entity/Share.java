@@ -1,30 +1,33 @@
 package by.epam.finalproject.model.entity;
 
-public class Share {
-    private Long id;
-    private Company company;
+public class Share extends CleverEntity {
+
+    private Long companyId;
+    private Long ownerId;
     private Integer numberOfShares;
 
-    public Share(Long id, Company company, Integer numberOfShares) {
-        this.id = id;
-        this.company = company;
+    public Share() {
+    }
+
+    public Share(Long id, Long companyId, Long ownerId, Integer numberOfShares) {
+        super(id);
+        this.companyId = companyId;
+        this.ownerId = ownerId;
         this.numberOfShares = numberOfShares;
     }
 
-    public Long getId() {
-        return id;
+    public Share(Long companyId, Long ownerId, Integer numberOfShares) {
+        this.companyId = companyId;
+        this.ownerId = ownerId;
+        this.numberOfShares = numberOfShares;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public Long getCompanyId() {
+        return companyId;
     }
 
-    public Company getCompany() {
-        return company;
-    }
-
-    public void setCompany(Company company) {
-        this.company = company;
+    public void setCompanyId(Long companyId) {
+        this.companyId = companyId;
     }
 
     public Integer getNumberOfShares() {
@@ -33,5 +36,13 @@ public class Share {
 
     public void setNumberOfShares(Integer numberOfShares) {
         this.numberOfShares = numberOfShares;
+    }
+
+    public Long getOwnerId() {
+        return ownerId;
+    }
+
+    public void setOwnerId(Long ownerId) {
+        this.ownerId = ownerId;
     }
 }
