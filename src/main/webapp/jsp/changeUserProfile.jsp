@@ -1,8 +1,8 @@
 <%--
   Created by IntelliJ IDEA.
   User: Ales
-  Date: 15.02.2022
-  Time: 06:06
+  Date: 17.02.2022
+  Time: 06:02
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
@@ -47,8 +47,8 @@
                 <a class="nav-item nav-link" href="/jsp/cryptos.jsp">Список криптовалют</a>
             </div>
         </div>
-        <form class="form-inline" action="/jsp/logIn.jsp" method="post">
-            <button class="btn btn-sm btn-outline-secondary" type="submit">Войти</button>
+        <form class="form-inline" action="/controller?command=log_out" method="post">
+            <button class="btn btn-sm btn-outline-secondary" type="submit">Выйти</button>
         </form>
     </nav>
 </header>
@@ -56,43 +56,32 @@
 <body>
 <div class="container">
     <form action="/controller" method="get" autocomplete="on" accept-charset="UTF-8">
-        <input type="hidden" name="command" value="registration">
+        <input type="hidden" name="command" value="updateClient">
         <div class="form-group">
             <label for="firstName">First name</label>
             <input type="text" class="form-control" id="firstName" aria-describedby="firstNameHelp"
-                   placeholder="First name" name="firstName">
+                   placeholder="First name" name="firstName" value="">
             <small id="firstNameHelp" class="form-text text-muted">Enter your first name.</small>
         </div>
         <div class="form-group">
             <label for="lastName">Last name</label>
             <input type="text" class="form-control" id="lastName" aria-describedby="lastNameHelp"
-                   placeholder="Last name" name="lastName">
+                   placeholder="Last name" name="lastName" value="">
             <small id="lastNameHelp" class="form-text text-muted">Enter your last name.</small>
         </div>
         <div class="form-group">
             <label for="passportSeries">Passport series</label>
             <input type="text" class="form-control" id="passportSeries" aria-describedby="passportSeriesHelp"
-                   placeholder="Passport series" name="passportSeries">
+                   placeholder="Passport series" name="passportSeries" value="">
             <small id="passportSeriesHelp" class="form-text text-muted">Enter your passport series.</small>
         </div>
         <div class="form-group">
             <label for="passportNumber">Passport number</label>
             <input type="text" class="form-control" id="passportNumber" aria-describedby="passportNumberHelp"
-                   placeholder="Passport number" name="passportNumber">
+                   placeholder="Passport number" name="passportNumber" value="">
             <small id="passportNumberHelp" class="form-text text-muted">Enter your passport number.</small>
         </div>
-        <div class="form-group">
-            <label for="exampleInputEmail1">Email address</label>
-            <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
-                   placeholder="Enter email" name="email">
-            <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
-        </div>
-        <div class="form-group">
-            <label for="exampleInputPassword1">Password</label>
-            <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password" name="password" aria-describedby="passwordHelp">
-            <small id="passwordHelp" class="form-text text-muted">Enter your password.</small>
-        </div>
-        <button type="submit" class="btn btn-primary mt-4">Register</button>
+        <button type="submit" class="btn btn-primary mt-4">Update</button>
     </form>
 </div>
 

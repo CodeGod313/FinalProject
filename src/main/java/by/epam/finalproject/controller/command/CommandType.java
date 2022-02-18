@@ -4,5 +4,6 @@ public enum CommandType {
     REGISTRATION,
     COMPANIES,
     CRYPTOS,
-    LOG_IN
+    LOG_IN,
+    CHANGE_LOCALE
 }

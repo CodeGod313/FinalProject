@@ -11,17 +11,18 @@ public class CommandFactoryImpl implements CommandFactory {
     public Optional<Command> createCommand(CommandType commandType) {
         switch (commandType) {
             case REGISTRATION -> {
-                return Optional.of(new RegistrationCommandImpl());
             }
             case LOG_IN -> {
-
+                return Optional.of(new LogInCommand());
             }
             case COMPANIES -> {
             }
             case CRYPTOS -> {
 
             }
-
+            case CHANGE_LOCALE -> {
+                return Optional.of(new ChangeLocaleCommand());
+            }
             default ->{
                 return Optional.empty();
             }

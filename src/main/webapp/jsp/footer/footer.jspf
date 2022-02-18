@@ -1,0 +1,33 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<!-- Footer -->
+<footer class="bg-dark text-center text-white">
+    <!-- Grid container -->
+    <div class="container p-4">
+        <!-- Section: Text -->
+        <section class="mb-4">
+            <p>
+                <fmt:message key="footer.message"/>
+            </p>
+        </section>
+        <!-- Section: Text -->
+    </div>
+    <!-- Grid container -->
+    <div class="btn-group btn-group-toggle" data-toggle="buttons">
+        <c:if test="${sessionScope.locale == 'en_US'}">
+            <a class="btn btn-secondary active" href="/controller?command=change_locale&locale=en_Us">EN</a>
+            <a class="btn btn-secondary" href="/controller?command=change_locale&locale=ru_RU">RU</a>
+        </c:if>
+        <c:if test="${sessionScope.locale == 'ru_RU'}">
+            <a class="btn btn-secondary" href="/controller?command=change_locale&locale=en_US">EN</a>
+            <a class="btn btn-secondary active" href="/controller?command=change_locale&locale=ru_RU">RU</a>
+        </c:if>
+    </div>
+    <!-- Copyright -->
+    <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
+        © 2021 Copyright:
+        <a class="text-white" href="/jsp/main.jsp">CleverEx LTD</a>
+    </div>
+    <!-- Copyright -->
+</footer>
+<!-- Footer -->

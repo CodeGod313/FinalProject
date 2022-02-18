@@ -5,7 +5,9 @@ create table roles(
 
 create table users(
 	user_id bigserial primary key not null,
-	role_id bigint,
+	role_id bigint not null,
+	isConfirmed boolean not null default false,
+	confirmationCode varchar(40) not null,
 	first_name varchar(15) not null,
 	last_name varchar(15) not null,
 	email varchar(25) not null,
@@ -14,11 +16,10 @@ create table users(
 );
 
 create table clients(
-	client_id bigserial primary key not null,
-	user_id bigint,
+	client_id bigint primary key not null,
 	passport_series varchar(2) not null,
 	passport_number varchar(7) not null,
-	foreign key(user_id) references users(user_id)
+	foreign key(client_id) references users(user_id)
 );
 
 
@@ -28,7 +29,8 @@ create table companies(
 	company_short_name varchar(5),
 	company_description text,
 	share_price decimal not null,
-	share_quantity int not null 
+	share_quantity int not null,
+	image_path varchar(40) not null
 );
 
 create table shares(

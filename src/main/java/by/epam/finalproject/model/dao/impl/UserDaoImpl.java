@@ -1,9 +1,7 @@
 package by.epam.finalproject.model.dao.impl;
 
 
-import by.epam.finalproject.model.dao.Dao;
-import by.epam.finalproject.model.dbconnection.ConnectionPool;
-import by.epam.finalproject.model.dbconnection.impl.ConnectionPoolImpl;
+import by.epam.finalproject.model.dao.UserDao;
 import by.epam.finalproject.model.entity.User;
 import by.epam.finalproject.model.exception.DaoException;
 import org.apache.log4j.LogManager;
@@ -15,7 +13,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Optional;
 
-public class UserDaoImpl implements Dao<User> {
+public class UserDaoImpl implements UserDao {
     public static final String USER_UPDATE_COMMAND = "UPDATE users SET first_name = ?, last_name = ?, email = ?, user_password =?, role_id = (SELECT role_id FROM roles WHERE role_name = ?) WHERE user_id = ?";
     public static final String USER_DELETE_COMMAND = "DELETE FROM users WHERE user_id = ?";
     public static final String FIRST_NAME_COLUMN = "first_name";
@@ -23,6 +21,8 @@ public class UserDaoImpl implements Dao<User> {
     public static final String EMAIL_COLUMN = "email";
     public static final String USER_PASSWORD_COLUMN = "user_password";
     public static final String ROLE_NAME_COLUMN = "role_name";
+    public static final String FIND_USER_BY_EMAIL_AND_PASSWORD_QUERY = "SELECT user_id, first_name, last_name, email, user_password, (SELECT role_name FROM roles WHERE users.role_id = roles.role_id) FROM users WHERE email=? AND user_password=?";
+    public static final String USER_ID_COLUMN = "user_id";
     static Logger logger = LogManager.getLogger(UserDaoImpl.class);
     public static final String USER_ADDING_COMMAND = "INSERT INTO users(first_name, last_name, email, user_password, role_id) values(?, ?, ?, ?, (SELECT role_id FROM roles WHERE role_name=?))";
     Connection connection;
@@ -100,8 +100,33 @@ public class UserDaoImpl implements Dao<User> {
             throw new DaoException("Can not delete user", e);
         }
     }
+
     @Override
     public void setConnection(Connection connection) {
         this.connection = connection;
+    }
+
+    @Override
+    public Optional<User> getUserByEmailAndPassword(String email, String password) throws DaoException {
+        if (connection == null) {
+            throw new DaoException("Connection is null");
+        }
+        Optional<User> user = Optional.empty();
+        try (PreparedStatement statement = connection.prepareStatement(FIND_USER_BY_EMAIL_AND_PASSWORD_QUERY)) {
+            statement.setString(1, email);
+            statement.setString(2, password);
+            ResultSet resultSet = statement.executeQuery();
+            if (resultSet.next()) {
+                String firstName = resultSet.getString(FIRST_NAME_COLUMN);
+                String lastname = resultSet.getString(LAST_NAME_COLUMN);
+                String role = resultSet.getString(ROLE_NAME_COLUMN);
+                Long id = resultSet.getLong(USER_ID_COLUMN);
+                user = Optional.of(new User(id, firstName, lastname, email, password, role));
+            }
+        } catch (SQLException e) {
+            logger.error("Can not get user by email and password");
+            throw new DaoException("Can not get user by email and password", e);
+        }
+        return user;
     }
 }
