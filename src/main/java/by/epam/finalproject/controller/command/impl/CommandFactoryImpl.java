@@ -15,15 +15,19 @@ public class CommandFactoryImpl implements CommandFactory {
             case LOG_IN -> {
                 return Optional.of(new LogInCommand());
             }
-            case COMPANIES -> {
-            }
-            case CRYPTOS -> {
-
-            }
             case CHANGE_LOCALE -> {
                 return Optional.of(new ChangeLocaleCommand());
             }
-            default ->{
+            case COMPANY_CREATION -> {
+                return Optional.of(new CompanyCreationCommand());
+            }
+            case DISPLAY_COMPANIES -> {
+                return Optional.of(new DisplayCompaniesCommand());
+            }
+            case CRYPTO_CREATION -> {
+                return Optional.of(new CryptoCreationCommand());
+            }
+            default -> {
                 return Optional.empty();
             }
         }

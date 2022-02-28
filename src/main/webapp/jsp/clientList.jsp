@@ -6,6 +6,10 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<fmt:setLocale value="${sessionScope.locale}"/>
+<fmt:setBundle basename="localization/locale"/>
 <html>
 <head>
     <title>СleverEx</title>
@@ -20,31 +24,7 @@
             crossorigin="anonymous"></script>
 </head>
 
-<header>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" href="#">
-            <img src="/images/currency-exchange.png" width="30" height="30" class="d-inline-block align-top" alt="">
-            CleverEx
-        </a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
-                aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-            <div class="navbar-nav">
-                <a class="nav-item nav-link" href="/jsp/main.jsp">О нас</a>
-                <a class="nav-item nav-link" href="/jsp/companies.jsp">Список компаний</a>
-                <a class="nav-item nav-link" href="/jsp/cryptos.jsp">Список криптовалют</a>
-                <a class="nav-item nav-link active" href="/jsp/clientList.jsp">Список пользователей</a>
-                <a class="nav-item nav-link" href="/jsp/companyCreation.jsp">Создать компанию</a>
-                <a class="nav-item nav-link" href="/jsp/cryptoCreation.jsp">Создать криптовалюту</a>
-            </div>
-        </div>
-        <form class="form-inline" action="/controller?command=log_out" method="post">
-            <button class="btn btn-sm btn-outline-secondary" type="submit">Выйти</button>
-        </form>
-    </nav>
-</header>
+<%@include file="header/adminHeader.jspf" %>
 <body>
 
 <div class="container">
@@ -53,7 +33,8 @@
             <div class="card" style="width: 18rem;">
                 <div class="card-body">
                     <h5 class="card-title">Название карточки</h5>
-                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
+                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
+                        card's
                         content.</p>
                 </div>
                 <ul class="list-group list-group-flush">
@@ -71,7 +52,8 @@
             <div class="card" style="width: 18rem;">
                 <div class="card-body">
                     <h5 class="card-title">Название карточки</h5>
-                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
+                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
+                        card's
                         content.</p>
                 </div>
                 <ul class="list-group list-group-flush">
@@ -89,7 +71,8 @@
             <div class="card" style="width: 18rem;">
                 <div class="card-body">
                     <h5 class="card-title">Название карточки</h5>
-                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
+                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
+                        card's
                         content.</p>
                 </div>
                 <ul class="list-group list-group-flush">
@@ -107,7 +90,8 @@
             <div class="card" style="width: 18rem;">
                 <div class="card-body">
                     <h5 class="card-title">Название карточки</h5>
-                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
+                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
+                        card's
                         content.</p>
                 </div>
                 <ul class="list-group list-group-flush">
@@ -127,7 +111,8 @@
             <div class="card" style="width: 18rem;">
                 <div class="card-body">
                     <h5 class="card-title">Название карточки</h5>
-                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
+                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
+                        card's
                         content.</p>
                 </div>
                 <ul class="list-group list-group-flush">
@@ -145,7 +130,8 @@
             <div class="card" style="width: 18rem;">
                 <div class="card-body">
                     <h5 class="card-title">Название карточки</h5>
-                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
+                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
+                        card's
                         content.</p>
                 </div>
                 <ul class="list-group list-group-flush">
@@ -163,7 +149,8 @@
             <div class="card" style="width: 18rem;">
                 <div class="card-body">
                     <h5 class="card-title">Название карточки</h5>
-                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
+                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
+                        card's
                         content.</p>
                 </div>
                 <ul class="list-group list-group-flush">
@@ -181,7 +168,8 @@
             <div class="card" style="width: 18rem;">
                 <div class="card-body">
                     <h5 class="card-title">Название карточки</h5>
-                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
+                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
+                        card's
                         content.</p>
                 </div>
                 <ul class="list-group list-group-flush">

@@ -3,24 +3,24 @@ package by.epam.finalproject.model.entity;
 import java.math.BigDecimal;
 
 public class CoinAccount extends CleverEntity {
-    private CoinType coinType;
+    private Crypto crypto;
     private BigDecimal quantityOfCoins;
 
     public CoinAccount() {
     }
 
-    public CoinAccount(Long id, CoinType coinType, BigDecimal quantityOfCoins) {
+    public CoinAccount(Long id, Crypto crypto, BigDecimal quantityOfCoins) {
         super(id);
-        this.coinType = coinType;
+        this.crypto = crypto;
         this.quantityOfCoins = quantityOfCoins;
     }
 
-    public CoinType getCoinType() {
-        return coinType;
+    public Crypto getCoinType() {
+        return crypto;
     }
 
-    public void setCoinType(CoinType coinType) {
-        this.coinType = coinType;
+    public void setCoinType(Crypto crypto) {
+        this.crypto = crypto;
     }
 
     public BigDecimal getQuantityOfCoins() {

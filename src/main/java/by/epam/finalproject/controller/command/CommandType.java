@@ -2,8 +2,10 @@ package by.epam.finalproject.controller.command;
 
 public enum CommandType {
     REGISTRATION,
-    COMPANIES,
-    CRYPTOS,
+    DISPLAY_COMPANIES,
+    DISPLAY_CRYPTOS,
     LOG_IN,
-    CHANGE_LOCALE
+    CHANGE_LOCALE,
+    COMPANY_CREATION,
+    CRYPTO_CREATION
 }

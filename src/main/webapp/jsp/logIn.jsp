@@ -37,19 +37,24 @@
 <%@include file="header/guestHeader.jspf" %>
 
 <body>
-<div class="container">
-    <form action="/controller" method="get" autocomplete="on" accept-charset="UTF-8">
+<div class="container mt-4">
+    <c:if test="${requestScope.alert == true}">
+        <div class="alert alert-danger mt-4" role="alert">
+            <fmt:message key="logIn.alert"/>
+        </div>
+    </c:if>
+    <form action="/controller" method="post" autocomplete="on" accept-charset="UTF-8">
         <input type="hidden" name="command" value="log_in">
         <div class="form-group">
             <label for="exampleInputEmail1"><fmt:message key="logIn.emailField"/> </label>
             <input required type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
-                   placeholder="Enter email" name="email" pattern="[a-zA-Z0-9]+@[a-zA-Z0-9]+\\.[a-z]{2,3}">
+                   placeholder="Enter email" name="email" pattern="[a-zA-Z0-9]+@[a-zA-Z0-9]+\.[a-z]{2,3}">
             <small id="emailHelp" class="form-text text-muted"><fmt:message key="logIn.emailHelp"/> </small>
         </div>
         <div class="form-group">
             <label for="exampleInputPassword1"><fmt:message key="logIn.passwordField"/> </label>
             <input required type="password" class="form-control" id="exampleInputPassword1" placeholder="Password"
-                   name="password" aria-describedby="passwordHelp" pattern="[A-Za-z0-9]{8,16}">
+                   name="password" aria-describedby="passwordHelp">
             <small id="passwordHelp" class="form-text text-muted"><fmt:message key="logIn.passwordHelp"/> </small>
         </div>
         <button type="submit" class="btn btn-primary mt-4"><fmt:message key="logIn.submit"/></button>

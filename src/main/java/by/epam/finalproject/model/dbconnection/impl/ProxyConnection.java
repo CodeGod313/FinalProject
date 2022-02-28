@@ -78,7 +78,7 @@ public class ProxyConnection implements Connection {
     public void close() throws SQLException {
         ConnectionPool connectionPool = ConnectionPoolImpl.getInstance();
         try {
-            connectionPool.releaseConnection(connection);
+            connectionPool.releaseConnection(this);
         } catch (WrongParameterException e) {
             e.printStackTrace();
         }

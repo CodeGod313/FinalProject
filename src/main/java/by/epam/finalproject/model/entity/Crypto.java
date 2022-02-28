@@ -2,31 +2,35 @@ package by.epam.finalproject.model.entity;
 
 import java.math.BigDecimal;
 
-public class Company extends CleverEntity {
+public class Crypto extends CleverEntity {
+
     private String name;
     private String shortName;
     private String description;
-    private BigDecimal sharePrice;
+    private String cryptoHash;
     private String imagePath;
+    private BigDecimal price;
 
-    public Company() {
+    public Crypto() {
     }
 
-    public Company(String name, String shortName, String description, BigDecimal sharePrice, String imagePath) {
-        this.name = name;
-        this.shortName = shortName;
-        this.description = description;
-        this.sharePrice = sharePrice;
-        this.imagePath = imagePath;
-    }
-
-    public Company(Long id, String name, String shortName, String description, BigDecimal sharePrice, String imagePath) {
+    public Crypto(Long id, String name, String shortName, String description, String cryptoHash, BigDecimal price, String imagePath) {
         super(id);
         this.name = name;
         this.shortName = shortName;
         this.description = description;
-        this.sharePrice = sharePrice;
+        this.cryptoHash = cryptoHash;
+        this.price = price;
         this.imagePath = imagePath;
+    }
+
+    public Crypto(String name, String shortName, String description, String cryptoHash, String imagePath, BigDecimal price) {
+        this.name = name;
+        this.shortName = shortName;
+        this.description = description;
+        this.cryptoHash = cryptoHash;
+        this.imagePath = imagePath;
+        this.price = price;
     }
 
     public String getImagePath() {
@@ -61,11 +65,19 @@ public class Company extends CleverEntity {
         this.description = description;
     }
 
-    public BigDecimal getSharePrice() {
-        return sharePrice;
+    public String getCryptoHash() {
+        return cryptoHash;
     }
 
-    public void setSharePrice(BigDecimal sharePrice) {
-        this.sharePrice = sharePrice;
+    public void setCryptoHash(String cryptoHash) {
+        this.cryptoHash = cryptoHash;
+    }
+
+    public BigDecimal getPrice() {
+        return price;
+    }
+
+    public void setPrice(BigDecimal price) {
+        this.price = price;
     }
 }

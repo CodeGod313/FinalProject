@@ -24,7 +24,7 @@
             crossorigin="anonymous"></script>
 </head>
 
-<%@include file="header/guestHeader.jspf" %>
+<%@include file="header/adminHeader.jspf" %>
 
 <body>
 <h1 class="text-center">CleverEx</h1>

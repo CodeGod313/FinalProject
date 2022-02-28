@@ -9,19 +9,41 @@ import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 
 import javax.servlet.ServletException;
+import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.Optional;
 
 @WebServlet(name = "controller", urlPatterns = "/controller")
+@MultipartConfig(
+        fileSizeThreshold = 1024 * 1024,
+        maxFileSize = 1024 * 1024 * 10,
+        maxRequestSize = 1024 * 1024 * 11
+)
 public class Controller extends HttpServlet {
+    public static final String IMAGES_FOLDER = "images\\CleverExImages";
+    public static final String IMAGES_FOLDER_ATTRIBUTE = "imagesFolder";
+    public static final String EMPTY_STRING = "";
     static Logger logger = LogManager.getLogger(Controller.class);
     public static final String COMMAND_PARAMETER = "command";
 
     public void init() {
+        String pathToImages = getServletContext().getRealPath(EMPTY_STRING) + IMAGES_FOLDER;
+        Path path = Paths.get(pathToImages);
+        if (!Files.exists(path)) {
+            try {
+                Files.createDirectory(path);
+            } catch (IOException e) {
+                logger.error("Can not create directory for application images", e);
+            }
+        }
+        getServletContext().setAttribute(IMAGES_FOLDER_ATTRIBUTE, pathToImages);
     }
 
     @Override

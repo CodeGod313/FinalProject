@@ -6,6 +6,10 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<fmt:setLocale value="${sessionScope.locale}"/>
+<fmt:setBundle basename="localization/locale"/>
 <html>
 <head>
     <title>СleverEx</title>
@@ -20,31 +24,7 @@
             crossorigin="anonymous"></script>
 </head>
 
-<header>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" href="#">
-            <img src="/images/currency-exchange.png" width="30" height="30" class="d-inline-block align-top" alt="">
-            CleverEx
-        </a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
-                aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-            <div class="navbar-nav">
-                <a class="nav-item nav-link" href="/jsp/main.jsp">О нас</a>
-                <a class="nav-item nav-link" href="/jsp/companies.jsp">Список компаний</a>
-                <a class="nav-item nav-link active" href="/jsp/cryptos.jsp">Список криптовалют</a>
-            </div>
-        </div>
-        <form class="form-inline" action="/jsp/registration.jsp" method="post">
-            <button class="btn btn-outline-success" type="submit">Зарегистрироваться</button>
-        </form>
-        <form class="form-inline" action="/jsp/logIn.jsp" method="post">
-            <button class="btn btn-sm btn-outline-secondary" type="submit">Войти</button>
-        </form>
-    </nav>
-</header>
+<%@include file="header/adminHeader.jspf" %>
 
 <body>
 <div class="container">
@@ -175,28 +155,7 @@
 </div>
 
 </body>
-<!-- Footer -->
-<footer class="bg-dark text-center text-white">
-    <!-- Grid container -->
-    <div class="container p-4">
-        <!-- Section: Text -->
-        <section class="mb-4">
-            <p>
-                Лучшая платформа для покупки и продажи акций
-            </p>
-        </section>
-        <!-- Section: Text -->
-    </div>
-    <!-- Grid container -->
-
-    <!-- Copyright -->
-    <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
-        © 2021 Copyright:
-        <a class="text-white" href="/jsp/main.jsp">CleverEx LTD</a>
-    </div>
-    <!-- Copyright -->
-</footer>
-<!-- Footer -->
+<%@include file="footer/footer.jspf" %>
 </html>
 
 </html>
