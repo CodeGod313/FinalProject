@@ -25,6 +25,7 @@ public class CryptoDaoImpl implements CryptoDao {
     public static final String IMAGE_PATH_COLUMN = "image_path";
     public static final String GET_ALL_CRYPTOS_QUERY = "SELECT crypto_id, crypto_name, short_name, description, crypto_hash, price, image_path FROM cryptos";
     public static final String CRYPTO_NAME_COLUMN = "crypto_name";
+    public static final String CREATE_CRYPTO_QUERY = "INSERT INTO cryptos(crypto_name, short_name, description, crypto_hash, price, image_path) VALUES (?,?,?,?,?,?)";
     Connection connection;
     static Logger logger = LogManager.getLogger(CryptoDaoImpl.class);
 
@@ -35,7 +36,21 @@ public class CryptoDaoImpl implements CryptoDao {
 
     @Override
     public void create(Crypto entity) throws DaoException {
-
+        if(connection == null){
+            throw new DaoException("Connection is null");
+        }
+        try(PreparedStatement statement = connection.prepareStatement(CREATE_CRYPTO_QUERY)) {
+            statement.setString(1, entity.getName());
+            statement.setString(2, entity.getShortName());
+            statement.setString(3, entity.getDescription());
+            statement.setString(4, entity.getCryptoHash());
+            statement.setBigDecimal(5, entity.getPrice());
+            statement.setString(6, entity.getImagePath());
+            statement.executeUpdate();
+        } catch (SQLException e) {
+            logger.error("Can not create a crypto");
+            throw new DaoException("Can not create a crypto");
+        }
     }
 
     @Override

@@ -16,6 +16,7 @@ import org.apache.log4j.Logger;
 import java.math.BigDecimal;
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.util.List;
 
 public class CryptoServiceImpl implements CryptoService {
     static Logger logger = LogManager.getLogger(CryptoServiceImpl.class);
@@ -46,5 +47,19 @@ public class CryptoServiceImpl implements CryptoService {
             logger.error("Can not create crypto", e);
             throw new ServiceException("Can not create crypto", e);
         }
+    }
+
+    @Override
+    public List<Crypto> findAllCryptos() throws ServiceException {
+        List<Crypto> cryptos;
+        try (Connection connection = ConnectionPoolImpl.getInstance().getConnection()) {
+            CryptoDao cryptoDao = new CryptoDaoImpl();
+            cryptoDao.setConnection(connection);
+            cryptos = cryptoDao.getAll();
+        } catch (SQLException | DaoException e) {
+            logger.error("Can not cryptos", e);
+            throw new ServiceException("Can not cryptos", e);
+        }
+        return cryptos;
     }
 }

@@ -29,7 +29,7 @@ public class DefaultSettingsFilter implements Filter {
             session.setAttribute(LOCALE_ATTRIBUTE, RU_LOCALE);
         }
         Object role = session.getAttribute(ROLE_ATTRIBUTE);
-        if(role == null){
+        if (role == null) {
             session.setAttribute(ROLE_ATTRIBUTE, GUEST_ROLE);
         }
         chain.doFilter(request, response);

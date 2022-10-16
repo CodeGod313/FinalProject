@@ -66,3 +66,19 @@ create table coins_accounts(
 	foreign key(owner_id) references clients(client_id),
 	foreign key(coin_type) references coin_types(coin_type_id)
 );
+
+create table companies_price_changes(
+	change_id bigserial not null,
+	change_time timestamp not null,
+	company_id bigint not null,
+	old_price decimal not null,
+	updated_price decimal not null,
+	foreign key(company_id) references companies(company_id)
+);
+
+create table cryptos_price_changes(
+	change_id bigserial not null,
+	change_time timestamp not null,
+	crypto_id bigint not null,
+	foreign key(crypto_id) references cryptos(crypto_id)
+);

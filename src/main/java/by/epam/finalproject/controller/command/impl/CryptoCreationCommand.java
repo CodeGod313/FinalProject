@@ -71,6 +71,7 @@ public class CryptoCreationCommand implements Command {
                 } catch (ServiceException e) {
                     logger.error("Can not create crypto");
                 }
+
                 router = new Router(RouterType.REDIRECT, DISPLAY_CRYPTOS_COMMAND);
             } else {
                 router = new Router(RouterType.FORWARD, currentPage);

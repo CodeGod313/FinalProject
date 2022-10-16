@@ -29,127 +29,37 @@
 <body>
 <div class="container">
     <div class="row mt-4">
-        <div class="col-md-auto">
-            <div class="card" style="width: 18rem;">
-                <img class="card-img-top" src="/images/google.jpg" alt="Card image cap">
-                <div class="card-body">
-                    <h5 class="card-title">Название карточки</h5>
-                    <p class="card-text">
-                        Some quick example text to build on the card title and make up the bulk of the card's
-                        content.
-                    </p>
-                    <a href="#" class="btn btn-primary">Переход куда-нибудь</a>
+        <c:forEach var="crypto" items="${requestScope.pageItems}">
+            <div class="col-md-auto">
+                <div class="card" style="width: 18rem;">
+                    <img class="card-img-top" src="/images/CleverExImages/${crypto.imagePath}" alt="Card image cap">
+                    <div class="card-body">
+                        <h5 class="card-title">${crypto.name}</h5>
+                        <p class="card-text">
+                            ${crypto.description}
+                        </p>
+                        <a href="#" class="btn btn-primary">Переход куда-нибудь</a>
+                    </div>
                 </div>
             </div>
-        </div>
+        </c:forEach>
 
-
-        <div class="col-md-auto">
-            <div class="card" style="width: 18rem;">
-                <img class="card-img-top" src="/images/google.jpg" alt="Card image cap">
-                <div class="card-body">
-                    <h5 class="card-title">Название карточки</h5>
-                    <p class="card-text">
-                        Some quick example text to build on the card title and make up the bulk of the card's
-                        content.
-                    </p>
-                    <a href="#" class="btn btn-primary">Переход куда-нибудь</a>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-auto">
-            <div class="card" style="width: 18rem;">
-                <img class="card-img-top" src="/images/google.jpg" alt="Card image cap">
-                <div class="card-body">
-                    <h5 class="card-title">Название карточки</h5>
-                    <p class="card-text">
-                        Some quick example text to build on the card title and make up the bulk of the card's
-                        content.
-                    </p>
-                    <a href="#" class="btn btn-primary">Переход куда-нибудь</a>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-auto">
-            <div class="card" style="width: 18rem;">
-                <img class="card-img-top" src="/images/google.jpg" alt="Card image cap">
-                <div class="card-body">
-                    <h5 class="card-title">Название карточки</h5>
-                    <p class="card-text">
-                        Some quick example text to build on the card title and make up the bulk of the card's
-                        content.
-                    </p>
-                    <a href="#" class="btn btn-primary">Переход куда-нибудь</a>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="row mt-4">
-        <div class="col-md-auto">
-            <div class="card" style="width: 18rem;">
-                <img class="card-img-top" src="/images/google.jpg" alt="Card image cap">
-                <div class="card-body">
-                    <h5 class="card-title">Название карточки</h5>
-                    <p class="card-text">
-                        Some quick example text to build on the card title and make up the bulk of the card's
-                        content.
-                    </p>
-                    <a href="#" class="btn btn-primary">Переход куда-нибудь</a>
-                </div>
-            </div>
-        </div>
-
-
-        <div class="col-md-auto">
-            <div class="card" style="width: 18rem;">
-                <img class="card-img-top" src="/images/google.jpg" alt="Card image cap">
-                <div class="card-body">
-                    <h5 class="card-title">Название карточки</h5>
-                    <p class="card-text">
-                        Some quick example text to build on the card title and make up the bulk of the card's
-                        content.
-                    </p>
-                    <a href="#" class="btn btn-primary">Переход куда-нибудь</a>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-auto">
-            <div class="card" style="width: 18rem;">
-                <img class="card-img-top" src="/images/google.jpg" alt="Card image cap">
-                <div class="card-body">
-                    <h5 class="card-title">Название карточки</h5>
-                    <p class="card-text">
-                        Some quick example text to build on the card title and make up the bulk of the card's
-                        content.
-                    </p>
-                    <a href="#" class="btn btn-primary">Переход куда-нибудь</a>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-auto">
-            <div class="card" style="width: 18rem;">
-                <img class="card-img-top" src="/images/google.jpg" alt="Card image cap">
-                <div class="card-body">
-                    <h5 class="card-title">Название карточки</h5>
-                    <p class="card-text">
-                        Some quick example text to build on the card title and make up the bulk of the card's
-                        content.
-                    </p>
-                    <a href="#" class="btn btn-primary">Переход куда-нибудь</a>
-                </div>
-            </div>
-        </div>
     </div>
 </div>
 
 <div class="container mt-4">
     <nav aria-label="Page navigation example">
         <ul class="pagination">
-            <li class="page-item"><a class="page-link" href="#">Previous</a></li>
-            <li class="page-item"><a class="page-link" href="#">1</a></li>
-            <li class="page-item"><a class="page-link" href="#">2</a></li>
-            <li class="page-item"><a class="page-link" href="#">3</a></li>
-            <li class="page-item"><a class="page-link" href="#">Next</a></li>
+            <c:forEach var="pageNumber" items="${requestScope.pages}">
+                <c:choose>
+                    <c:when test="${requestScope.page == pageNumber}">
+                        <li class="page-item active"><a class="page-link" href="/controller?command=display_cryptos&page=${pageNumber}">${pageNumber}</a></li>
+                    </c:when>
+                    <c:when test="${requestScope.page != pageNumber}">
+                        <li class="page-item"><a class="page-link" href="/controller?command=display_cryptos&page=${pageNumber}">${pageNumber}</a></li>
+                    </c:when>
+                </c:choose>
+            </c:forEach>
         </ul>
     </nav>
 </div>

@@ -27,6 +27,9 @@ public class CommandFactoryImpl implements CommandFactory {
             case CRYPTO_CREATION -> {
                 return Optional.of(new CryptoCreationCommand());
             }
+            case DISPLAY_CRYPTOS -> {
+                return Optional.of(new DisplayCryptosCommand());
+            }
             default -> {
                 return Optional.empty();
             }

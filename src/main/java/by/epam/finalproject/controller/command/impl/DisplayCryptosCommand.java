@@ -4,11 +4,11 @@ import by.epam.finalproject.controller.PaginationContainer;
 import by.epam.finalproject.controller.Router;
 import by.epam.finalproject.controller.RouterType;
 import by.epam.finalproject.controller.command.Command;
-import by.epam.finalproject.model.entity.Company;
+import by.epam.finalproject.model.entity.Crypto;
 import by.epam.finalproject.model.exception.CommandException;
 import by.epam.finalproject.model.exception.ServiceException;
-import by.epam.finalproject.model.service.CompanyService;
-import by.epam.finalproject.model.service.impl.CompanyServiceImpl;
+import by.epam.finalproject.model.service.CryptoService;
+import by.epam.finalproject.model.service.impl.CryptoServiceImpl;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 
@@ -18,12 +18,13 @@ import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
 import java.util.List;
 
-import static by.epam.finalproject.controller.PageConstant.COMPANIES_PAGE;
+import static by.epam.finalproject.controller.PageConstant.CRYPTOS_PAGE;
 
-public class DisplayCompaniesCommand implements Command {
+public class DisplayCryptosCommand implements Command {
+
     public static final String PAGES_ATTRIBUTE = "pages";
     public static final String CURRENT_PAGE_ATTRIBUTE = "currentPage";
-    static Logger logger = LogManager.getLogger(DisplayCompaniesCommand.class);
+    static Logger logger = LogManager.getLogger(DisplayCryptosCommand.class);
     public static final String PAGE_PARAMETER = "page";
     public static final int FIRST_PAGE = 1;
     public static final int ITEMS_PER_PAGE = 8;
@@ -38,27 +39,27 @@ public class DisplayCompaniesCommand implements Command {
         } else {
             page = Integer.parseInt(pageString);
         }
-        CompanyService companyService = new CompanyServiceImpl();
-        List<Company> companies;
+        CryptoService cryptoService = new CryptoServiceImpl();
+        List<Crypto> cryptos;
         try {
-            companies = companyService.findAllCompanies();
+            cryptos = cryptoService.findAllCryptos();
         } catch (ServiceException e) {
             logger.error("Can not display companies", e);
             throw new CommandException("Can not display companies", e);
         }
-        PaginationContainer<Company> paginationContainer = new PaginationContainer<>(companies, ITEMS_PER_PAGE);
+        PaginationContainer<Crypto> paginationContainer = new PaginationContainer<>(cryptos, ITEMS_PER_PAGE);
         Integer maxPage = paginationContainer.countMaxPage();
         List<Integer> pages = new ArrayList<>();
         for (int i = 0; i < maxPage; i++) {
             pages.add(i + 1);
         }
         request.setAttribute(PAGES_ATTRIBUTE, pages);
-        List<Company> pageItems = paginationContainer.generatePageItemList(page);
+        List<Crypto> pageItems = paginationContainer.generatePageItemList(page);
         request.setAttribute(PAGE_ITEMS_ATTRIBUTE, pageItems);
         request.setAttribute(PAGE_PARAMETER, page);
         HttpSession session = request.getSession();
-        session.setAttribute(CURRENT_PAGE_ATTRIBUTE, COMPANIES_PAGE);
-        Router router = new Router(RouterType.FORWARD, COMPANIES_PAGE);
+        session.setAttribute(CURRENT_PAGE_ATTRIBUTE, CRYPTOS_PAGE);
+        Router router = new Router(RouterType.FORWARD, CRYPTOS_PAGE);
         return router;
     }
 }
